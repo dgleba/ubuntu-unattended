@@ -21,9 +21,12 @@ https://github.com/dgleba/ubuntu-unattended
 
 in vamp198e
 
+
 cd /var/varvamp/
-mkdir netson3
-cd netson3
+mkdir netson202d
+cd netson202d
+"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" sharedfolder add "netson3" --name netson202 --hostpath c:/var/netson202c/ --automount
+mkdir c:\var\netson202
 
 rm create-unattended-iso.sh
 wget https://raw.githubusercontent.com/dgleba/ubuntu-unattended/master/create-unattended-iso.sh
@@ -31,6 +34,7 @@ https://github.com/dgleba/ubuntu-unattended/blob/master/create-unattended-iso.sh
 chmod +x create-unattended-iso.sh
 #  >>>>>>edit it for tmp and iso source
 sudo ./create-unattended-iso.sh
+ 
  
 _____________
  
@@ -80,6 +84,13 @@ sudo mount -o loop VBoxGuestAdditions_4.3.8.iso /mnt
 cd /mnt
 sudo ./VBoxLinuxAdditions.run
 _____________
+
+
+
+vboxmanage sharedfolder add "io" --name share-name --hostpath /path/to/folder/ --automount
+vboxmanage sharedfolder remove "io" --name share-name
+
+vboxmanage sharedfolder add "netson3" --name netson202c --hostpath /var/netson202c/ --automount
 
 
 
