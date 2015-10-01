@@ -17,15 +17,19 @@ _____________
 
 https://github.com/netson/ubuntu-unattended
 
+https://github.com/dgleba/ubuntu-unattended
+
+in vamp198e
+
 cd /var/varvamp/
-mkdir netson
-cd netson
+mkdir netson3
+cd netson3
 
-wget https://raw.githubusercontent.com/netson/ubuntu-unattended/master/create-unattended-iso.sh
+rm create-unattended-iso.sh
+wget https://raw.githubusercontent.com/dgleba/ubuntu-unattended/master/create-unattended-iso.sh
+https://github.com/dgleba/ubuntu-unattended/blob/master/create-unattended-iso.sh
 chmod +x create-unattended-iso.sh
-
-  >>>>>>edit it for tmp and iso source
-
+#  >>>>>>edit it for tmp and iso source
 sudo ./create-unattended-iso.sh
  
 _____________
