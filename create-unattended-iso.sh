@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 # file names & paths
-tmp="/tmp"  # destination folder to store the final iso file
+
+#David Gleba 2015-10-01_Thu_12.11-PM using vamp198e
+#
+tmp="/var/varvamp/tmp"  # destination folder to store the final iso file
 hostname="ubuntu"
 
 # define spinner function for slow tasks
@@ -65,7 +68,8 @@ while true; do
                 new_iso_name="ubuntu-12.04.4-server-amd64-unattended.iso" # filename of the new iso file to be created
                 break;;
         [2]* )  download_file="ubuntu-14.04.3-server-amd64.iso"             # filename of the iso to be downloaded
-                download_location="http://releases.ubuntu.com/14.04/"     # location of the file to be downloaded
+                #David Gleba edited.
+                download_location="http://mirror.pnl.gov/releases/14.04.3/"     # location of the file to be downloaded
                 new_iso_name="ubuntu-14.04.3-server-amd64-unattended.iso"   # filename of the new iso file to be created
                 break;;
         * ) echo " please answer [1] or [2]";;
@@ -73,7 +77,7 @@ while true; do
 done
 
 # ask the user questions about his/her preferences
-read -ep " please enter your preferred timezone: " -i "Europe/Amsterdam" timezone
+read -ep " please enter your preferred timezone: " -i "America/Detroit" timezone
 read -ep " please enter your preferred username: " -i "netson" username
 read -sp " please enter your preferred password: " password
 printf "\n"
@@ -98,7 +102,7 @@ fi
 seed_file="netson.seed"
 if [[ ! -f $tmp/$seed_file ]]; then
     echo -h " downloading $seed_file: "
-    download "https://github.com/netson/ubuntu-unattended/raw/master/$seed_file"
+    download "https://github.com/dgleba/ubuntu-unattended/blob/master/$seed_file"
 fi
 
 # install required packages
