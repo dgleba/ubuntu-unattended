@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+#David Gleba 2015-10-01 03:15PM
+
 # set defaults
 default_hostname="$(hostname)"
 default_domain="netson.local"
@@ -85,11 +87,44 @@ sed -i "s@ubuntu@$hostname@g" /etc/hosts
 hostname "$hostname"
 
 # update repos
-apt-get -y update > /dev/null 2>&1
-apt-get -y upgrade > /dev/null 2>&1
-apt-get -y dist-upgrade > /dev/null 2>&1
-apt-get -y autoremove > /dev/null 2>&1
-apt-get -y purge > /dev/null 2>&1
+apt-get -y update 
+#apt-get -y upgrade > /dev/null 2>&1
+#apt-get -y dist-upgrade > /dev/null 2>&1
+apt-get -y autoremove 
+apt-get -y purge 
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+apt-get -y install mc
+apt-get -y install locate
+
+#install virtual box guest additions.
+#http://virtualboxes.org/doc/installing-guest-additions-on-ubuntu/
+#https://www.virtualbox.org/manual/ch04.html#idp46856128490560
+#http://www.binarytides.com/vbox-guest-additions-ubuntu-14-04/
+#http://sharadchhetri.com/2014/10/07/ubuntu-14-04-install-virtualbox-guest-additions-also-create-videos/
+
+
+#sudo apt-get install build-essential module-assistant;
+#sudo m-a prepare
+sudo apt-get -y install dkms
+#sudo rcvboxadd setup
+#sudo apt-get -y install virtualbox-guest-additions-iso
+sudo apt-get -y install build-essential module-assistant
+sudo m-a prepare
+
+cd /tmp
+wget http://download.virtualbox.org/virtualbox/5.0.2/VBoxGuestAdditions_5.0.2.iso
+#sudo apt-get install dkms gcc 
+sudo mount -o loop VBoxGuestAdditions_5.0.2.iso /mnt
+cd /mnt
+sudo ./VBoxLinuxAdditions.run
+
+# check loaded modules
+$ lsmod | grep -io vboxguest
+
 
 # install puppet
 if [[ include_puppet_repo -eq 1 ]]; then
@@ -117,7 +152,7 @@ pluginsync=true\n\
         if [[ ! -f $tmp/finish.sh ]]; then
             echo -n " downloading finish.sh: "
             cd $tmp
-            download "https://raw.githubusercontent.com/netson/ubuntu-unattended/master/finish.sh"
+            download "https://raw.githubusercontent.com/dgleba/ubuntu-unattended/master/finish.sh"
         fi
 
         # set proper permissions on finish script
@@ -140,4 +175,6 @@ rm $0
 echo " DONE; rebooting ... "
 
 # reboot
+sudo updatedb
+
 reboot

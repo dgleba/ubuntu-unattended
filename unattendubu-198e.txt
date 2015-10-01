@@ -1,0 +1,83 @@
+
+note:
+have to press ctrl-alt-f1
+to get login.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2015-10-01[Oct-Thu]10-18AM
+
+in vamp198e
+start vm
+ssh into it
+
+
+_____________
+
+
+https://github.com/netson/ubuntu-unattended
+
+cd /var/varvamp/
+mkdir netson
+cd netson
+
+wget https://raw.githubusercontent.com/netson/ubuntu-unattended/master/create-unattended-iso.sh
+chmod +x create-unattended-iso.sh
+
+  >>>>>>edit it for tmp and iso source
+
+sudo ./create-unattended-iso.sh
+ 
+_____________
+ 
+ 
+america/detroit
+ 
+netson netson  a
+ 
+_____________
+
+
+cd /var/varvamp/
+mkdir netson2
+cd netson2
+
+
+_____________
+
+no suitable module for running kernel found ubuntu 14.04 server
+
+https://mylinuxramblings.wordpress.com/2014/12/06/how-to-install-virtualbox-guest-editions-in-ubuntu-server-14-04/
+
+
+Install required packages:  sudo apt-get install build-essential module-assistant
+Configure your system for building kernel modules:  sudo m-a prepare
+Click on Install Guest Additions… from the Devices menu
+
+C:\Program Files\Oracle\VirtualBox\VBoxGuestAdditions.iso
+
+Mount the virtual CD Rom: sudo mount /dev/cdrom /media/cdrom 
+Change directory to the virtual CD Rom Drive: cd /media/cdrom
+Install Guest Editions: sudo ./VBoxLinuxAdditions.run
+Restart VM by entering: sudo reboot
+To check that Guest Editions are installed: lsmod | grep vboxguest
+
+C:\Program Files\Oracle\VirtualBox\VBoxGuestAdditions.iso
+
+_____________
+
+may be unattended...
+http://sharadchhetri.com/2014/10/07/ubuntu-14-04-install-virtualbox-guest-additions-also-create-videos/
+
+cd /tmp
+wget http://download.virtualbox.org/virtualbox/4.3.8/VBoxGuestAdditions_4.3.8.iso
+sudo apt-get install dkms gcc 
+sudo mount -o loop VBoxGuestAdditions_4.3.8.iso /mnt
+cd /mnt
+sudo ./VBoxLinuxAdditions.run
+_____________
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
